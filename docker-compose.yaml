@@ -1,0 +1,35 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:5173" 
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  simulator:
+    build: ./backend
+    command: ["npx", "ts-node", "src/utils/sensor.simulator.ts"]
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
