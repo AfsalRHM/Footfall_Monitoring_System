@@ -42,7 +42,7 @@ const Sidebar = ({
                 setActive(item.id);
                 setIsOpen(false); // Close sidebar on mobile after selection
               }}
-              className={`w-full flex items-center gap-3 px-6 py-2 rounded-md text-left ${
+              className={`w-full flex items-center gap-3 px-6 py-2 rounded-md text-left hover:cursor-pointer ${
                 active === item.id
                   ? "bg-indigo-600 text-white"
                   : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700"
